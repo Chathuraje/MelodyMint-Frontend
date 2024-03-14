@@ -1,0 +1,55 @@
+<div style="height: 100%">
+  <div class="row align-items-center" style="height: 100%">
+    <div
+      class="col-4 p-5 d-flex flex-column justify-content-center"
+      style="
+        background: var(
+          --Gradient-Dark-blue-linear-gradient-2,
+          linear-gradient(
+            180deg,
+            rgba(29, 78, 216, 0.27) 0%,
+            rgba(29, 78, 216, 0.06) 41.5%,
+            rgba(29, 78, 216, 0.02) 100%
+          ),
+          #000
+        );
+        height: 100%;
+      "
+    >
+      <div class="text-light" style="font-size: 48px">
+        Let’s Begin by<br />
+        choosing your role
+      </div>
+      <div class="fs-6 mt-3 text-light">
+        The registration process starts with selecting your role
+      </div>
+    </div>
+    <div
+      class="col-8 p-5 d-flex flex-column justify-content-center"
+      style="background: var(--Shades-White, #fff); height: 100%"
+    >
+      <div class="fs-6 mt-3 text-dark">
+        Choose if you are a investor or a music artist. You can always change
+        your profile to music artist, if you select investor
+      </div>
+      <div class="d-flex">
+        <div (click)="onInvenstor()"
+        class="card pt-4 m-2 d-flex align-items-center justify-content-center"
+        style="width: 18rem; border-radius: 8px; border: 1px solid var(--Neutral-Gray---100, #e7e7e7); background: var(--Neutral-Gray--50, #f6f6f6);">
+          <em class="las la-hand-holding-usd fs-3"></em>
+          <div class="card-body text-center">
+            <p class="card-text">Investor</p>
+          </div>
+        </div>
+        <div (click)="onArtist()"
+        class="card pt-4 m-2 d-flex align-items-center justify-content-center" style="width: 18rem; border-radius: 8px; border: 1px solid var(--Neutral-Gray---100, #e7e7e7); background: var(--Shades-White, #fff);">
+          <em class="las la-music fs-3"></em>
+          <div class="card-body text-center">
+            <p class="card-text">Music artist</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,282 @@
+<div style="height: 100%">
+  <div class="row align-items-center" style="height: 100%">
+    <div class="col-4 p-5 d-flex flex-column justify-content-center" style="
+        background: var(
+          --Gradient-Dark-blue-linear-gradient-2,
+          linear-gradient(
+            180deg,
+            rgba(29, 78, 216, 0.27) 0%,
+            rgba(29, 78, 216, 0.06) 41.5%,
+            rgba(29, 78, 216, 0.02) 100%
+          ),
+          #000
+        );
+        height: 100%;
+      ">
+      <div class="text-light" style="font-size: 48px">
+        Tell us a bit more<br> about you
+      </div>
+      <div class="fs-6 mt-3 text-light">
+        This information helps know who you are
+      </div>
+    </div>
+    <div class="col-8 p-5 pt-5 d-flex flex-column "
+      style="background: var(--Shades-White, #fff); height: 100%">
+      <div class="fs-6 mt-5 pt-5 text-dark">
+        Fill the required information, you can always edit them later
+      </div>
+      <div class="mt-3 ">
+        <mat-stepper
+          [disableRipple]="true"
+          linear
+          (selectionChange)="onStepperChanged($event)"
+        >
+        <mat-step [stepControl]="artistRegistrationForm" [aria-label]="'Step-1'">
+          <ng-template matStepLabel>
+            <div class="text-start icon-color" [ngStyle]="{ opacity: step1 }">
+              <p class="" style="font-weight: 500">Step 1</p>
+              <div class="d-flex">
+                <p class="me-2" style="font-weight: normal">Personal Details</p>
+                <span
+                  *ngIf="isStep1Valid"
+                  nz-icon
+                  nzType="check-circle"
+                  nzTheme="fill"
+                  class="icon-color"
+                  style="margin-top: 2px"
+                ></span>
+              </div>
+              <div class="stepper-underline"></div>
+            </div>
+          </ng-template>
+          <form [formGroup]="artistRegistrationForm">
+            <div mat-dialog-content>
+              <div class="row">
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>First name</nz-form-label>
+                      <nz-form-control nzErrorTip="First name is required!">
+                        <input nz-input class="w-100" formControlName="firstName"
+                          placeholder="Type your first name here" />
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>Last name</nz-form-label>
+                      <nz-form-control nzErrorTip="Last name is required!">
+                        <input nz-input class="w-100" formControlName="lastName" placeholder="Type your Last name here" />
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>Email address</nz-form-label>
+                      <nz-form-control nzErrorTip="Email address is required!">
+                        <input nz-input class="w-100" formControlName="email" placeholder="example@email.com" />
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>Your profession</nz-form-label>
+                      <nz-form-control nzErrorTip="Your profession is required!">
+                        <input nz-input class="w-100" formControlName="yourProfession" placeholder="Type your Your profession here" />
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label nzFor="contactNumber">Contact number</nz-form-label>
+                      <nz-form-control
+                        [nzValidateStatus]="artistRegistrationForm.controls['contactNumber']"
+                        nzErrorTip="Please input your contact Number!">
+                        <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+                          <ng-template #addOnBeforeTemplate>
+                            <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                              <nz-option nzLabel="+94" nzValue="+94"></nz-option>
+                              <nz-option nzLabel="+87" nzValue="+87"></nz-option>
+                            </nz-select>
+                          </ng-template>
+                          <input nz-input class="w-100" formControlName="contactNumber" placeholder="Contact number" />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>Describe yourself a bit</nz-form-label>
+                      <nz-form-control nzErrorTip="Describe yourself a bit is required!">
+                        <textarea type="text" nz-input class="w-100" formControlName="describeYourself" placeholder="Describe yourself a bit" ></textarea>
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="mt-3">
+            <button
+              (click)="onSecondStep()"
+              class="small-btn-width btn-radius me-2"
+              nzType="primary"
+              nz-button
+              matStepperNext
+            >
+              Next
+            </button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="socialLinksDetailForm">
+          <ng-template matStepLabel>
+            <div class="text-start icon-color" [ngStyle]="{ opacity: step2 }">
+              <p style="font-weight: 500">Step 2</p>
+              <div class="d-flex">
+                <p class="me-2" style="font-weight: normal">
+                  Social Links
+                </p>
+                <span
+                  *ngIf="isStep2Valid"
+                  nz-icon
+                  nzType="check-circle"
+                  nzTheme="fill"
+                  class="icon-color"
+                  style="margin-top: 2px"
+                ></span>
+              </div>
+              <div class="stepper-underline"></div>
+            </div>
+          </ng-template>
+          <form [formGroup]="socialLinksDetailForm">
+            <div mat-dialog-content>
+              <div class="row">
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>Discord server link</nz-form-label>
+                      <nz-form-control nzErrorTip="Add your Discord server link here">
+                        <input nz-input class="w-100" formControlName="discordServerLink"
+                          placeholder="Add your Discord server link here" />
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>X account link</nz-form-label>
+                      <nz-form-control nzErrorTip="X account link is required!">
+                        <input nz-input class="w-100" formControlName="xAccountLink" placeholder="Add you X account link here" />
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+                <div class="col-12">
+                  <nz-form-item class="w-100">
+                    <div class="w-100">
+                      <nz-form-label>TikTok account link</nz-form-label>
+                      <nz-form-control nzErrorTip="TikTok account link is required!">
+                        <input nz-input class="w-100" formControlName="tikTokAccountLink" placeholder="Add you TikTok account link here" />
+                      </nz-form-control>
+                    </div>
+                  </nz-form-item>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div>
+            <button
+              (click)="onThirdStep()"
+              class="small-btn-width btn-radius me-2"
+              nzType="primary"
+              nz-button
+              matStepperNext
+            >
+              Next
+            </button>
+            <button
+              class="small-btn-width btn-radius"
+              nzType="primary"
+              nzGhost
+              nz-button
+              matStepperPrevious
+            >
+              Back
+            </button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>
+            <div class="text-start icon-color" [ngStyle]="{ opacity: step3 }">
+              <p style="font-weight: 500">Step 3</p>
+              <div class="d-flex">
+                <p class="me-2" style="font-weight: normal">Profile Pic</p>
+                <span
+                  *ngIf="isStep3Valid"
+                  nz-icon
+                  nzType="check-circle"
+                  nzTheme="fill"
+                  class="icon-color"
+                  style="margin-top: 2px"
+                ></span>
+              </div>
+              <div class="stepper-underline"></div>
+            </div>
+          </ng-template>
+
+          <form [formGroup]="profilePicForm">
+            <div class="m-4">
+              <div class="">
+                  <h2>Upload Your Profile</h2>
+              </div>
+              <div class="d-flex flex-row">
+                <input #upload type="file" hidden="false"
+                accept="image/*"
+                (change)="onUpload($event)">
+                <button class="btn-radius" nzType="primary" nzGhost nz-button (click)="upload.click()">
+                  <em nz-icon nzType="upload"></em>
+                  Choose File
+                </button>
+              </div>
+              <p class="mt-2">{{fileName}}</p>
+          </div>
+
+          </form>
+          <div>
+            <button
+              class="btn-radius me-2"
+              nzType="primary"
+              nz-button
+              (click)="onCreateAccount()"
+            >
+              Create Account
+            </button>
+            <button
+              class="small-btn-width btn-radius"
+              nzType="primary"
+              nzGhost
+              nz-button
+              matStepperPrevious
+            >
+              Back
+            </button>
+          </div>
+          </mat-step>
+      </mat-stepper>
+    </div>
+
+
+    </div>
+  </div>
+</div>
