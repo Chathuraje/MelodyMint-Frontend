@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+const axios = require('axios');
 
 
 @Component({
@@ -88,8 +89,40 @@ export class InvestorRegistrationFormComponent implements OnInit {
 
   onCreateAccount(){
     console.log(this.investorRegistrationForm.value);
-    console.log(this.socialLinksDetailForm.value);
     console.log(this.profilePicForm.value);
+
+    const investorRegistrationFormData = this.investorRegistrationForm.value;
+    const profilePicFormData = this.profilePicForm.value;
+
+    const postData = {
+      wallet_address: '0xc3d3E220EcA81BBb0593119C30b160c92bd32D96',
+      username: "",
+      first_name: investorRegistrationFormData.firstName,
+      last_name: investorRegistrationFormData.lastName,
+      email: investorRegistrationFormData.email,
+      contact_no: investorRegistrationFormData.phoneNumberPrefix + investorRegistrationFormData.contactNumber,
+      country: "",
+      state: "",
+      profile_picture: "",
+      is_artist: false,
+      disabled: false
+    };
+    
+    var respones = axios.post('http://64.225.90.69:1998/api/auth/register', postData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      }
+    })
+
+    const message = respones.data;
+    if (message.code === 400) {
+      console.log("User already registered")
+    } else if (message.code === 400) {
+      console.log("User sucessfully registerd")
+    } else {
+      console.log("U")
+  }
 
   }
 

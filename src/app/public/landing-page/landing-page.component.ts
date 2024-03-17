@@ -71,6 +71,7 @@ export class LandingPageComponent {
       
     if (response_data.code === 404) {
       console.log('response', response.data);
+      // Need to pass the wallet id (provider.account)
       this.router.navigate(['/registration']);
     } else {
       this.router.navigate(['/']);
