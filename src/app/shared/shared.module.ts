@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { NgZorroModule } from './ng-zorro/ng-zorro.module';
+import { ChunkPipe } from '../@application/pipes/chunk.pipe';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ChunkPipe
+  ],
   imports: [
     CommonModule,
     NgZorroModule,
@@ -15,6 +18,7 @@ import { NgZorroModule } from './ng-zorro/ng-zorro.module';
   exports: [
     NgZorroModule,
     MaterialModule,
+    ChunkPipe
   ]
 })
 export class SharedModule { }

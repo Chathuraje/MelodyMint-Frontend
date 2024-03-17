@@ -1,0 +1,124 @@
+<div class="container mt-5">
+  
+<div class="row">
+  <div class="col-8">
+    <div class="row">
+      <div class="col-4">
+        <img [src]="fundraiser.image" alt="" style="width: 100%;">
+      </div>
+      <div class="col-8">
+        <div class=" d-flex align-items-center mb-3"><em class="las la-external-link-alt me-3" style="font-size: 30px;"></em>Share fundraiser</div>
+        <div class="h1">{{fundraiser.title}}</div>
+        <div class="h4">{{ getDescriptionFirstSentence(fundraiser.description) }}</div>
+        <div>
+          <div class=" d-flex align-items-center">
+            <div class="icon-container">
+              <i class="las la-user-alt" style="font-size: 30px;"></i>
+            </div>
+            <div class="ms-2">
+              <span>{{ fundraiser.creater_name }}</span>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row mt-4 mb-3">
+      <div class="h2">Fundraiser description</div>
+      <div class="h6">{{fundraiser.description}}</div>
+    </div>
+    <hr>
+    <div class="row mt-4">
+      <div class="h2">Investors of the fund</div>
+      <div>
+        <div>
+          <nz-table #monthlyTable [nzData]="fundraiser.investers" nzOuterBordered="true" nzShowSizeChanger nzBordered="true"
+                    nzTableLayout="fixed" nzFrontPagination="false" nzShowPagination="false">
+            <thead>
+              <tr>
+                <th nzWidth="150px">Investor name</th>
+                <th nzWidth="100px">Investment</th>
+                <th nzWidth="150px">Investment date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let investor of fundraiser.investers">
+                <td>{{ investor.invester_id }}</td>
+                <td>Eth {{ investor.investment_amount }}</td>
+                <td>{{ investor.invested_date }}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-4">
+    <div class="p-4" style="border-radius: 16px;
+    border: 1px solid var(--Neutral-Gray---100, #E7E7E7);
+    background: var(--Shades-White, #FFF);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.12);">
+      <div ><span class="h3">Eth {{fundraiser.current_amount}} </span>  <span > of eth {{fundraiser.target_amount}} goal</span> </div>
+      <nz-progress [nzPercent]="fundraiser.distribution"></nz-progress>
+      <div class="mt-1">                    
+        <button class="btn btn-secondary btn-sm " >Royalties {{ fundraiser.distribution }}% </button>
+      </div>
+      <hr>
+      <div class="mb-4 d-flex align-items-center">
+        <div class="icon-container">
+          <i class="las la-calendar" style="font-size: 30px;"></i>
+        </div>
+        <div class="ms-2">
+          <span>Fund created</span><br>
+          <span>{{ fundraiser.created_at }}</span>
+        </div>
+      </div>
+      <div class="mb-4 d-flex align-items-center">
+        <div class="icon-container">
+          <i class="las la-calendar-times" style="font-size: 30px;"></i>
+        </div>
+        <div class="ms-2">
+          <span>Fund deadline</span><br>
+          <span>{{ fundraiser.end_date }}</span>
+        </div>
+      </div>
+      <div class="mb-4 d-flex align-items-center">
+        <div class="icon-container">
+          <i class="lab la-ethereum" style="font-size: 30px;"></i>
+        </div>
+        <div class="ms-2">
+          <span>Token owners</span><br>
+          <span>-</span>
+        </div>
+      </div>
+      
+      
+     
+      <div class="mt-3">
+        <button class="btn w-100 mt-1" style="border-radius: 8px;
+        background: rgba(29, 78, 216, 0.20);">View collection</button>
+      </div>
+      <hr>
+      <div class="mt-5">
+        <nz-form-label >Enter your investment to support the artist</nz-form-label>
+        <nz-form-control nzErrorTip="Title of the fundraiser is required!">
+          <input nz-input class="w-100"
+            placeholder="Enter Amount" />
+        </nz-form-control>
+        <button class="btn btn-primary w-100 mt-3 ">Invest</button>
+      </div>
+     
+
+
+    </div>
+    <div class="mt-4 ">
+      <button class="btn w-100" style="border-radius: 8px;
+      background: rgba(29, 78, 216, 0.20);">Release Fund to Investors</button>
+    </div>
+
+  </div>
+
+</div>
+</div>

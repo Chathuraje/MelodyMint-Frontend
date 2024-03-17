@@ -13,6 +13,7 @@ import {
   signMessage,
   InjectedConnector,
 } from '@wagmi/core';
+import { StorageService } from 'src/app/@application/service/storage.service';
 
 const client = createClient({
   autoConnect: true,
@@ -26,17 +27,25 @@ const client = createClient({
 })
 export class LandingPageComponent {
 
-
+  disbutton = false
   isNavbarCollapsed = false;
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
+    private storageService: StorageService,
     ) {
+
+      const userId = this.storageService.getFromLocalStorage('userId');
+      console.log(userId);
+      if(userId) {
+        this.disbutton = true
+      }
+
    }
 
 
   ngOnInit(): void {
 
   }
-  
   async onRegister() {
     const { isConnected } = getAccount();
 
@@ -57,7 +66,7 @@ export class LandingPageComponent {
     const message = data.message;
 
     const signature = await signMessage({ message });
-    
+
     const challengeData = {
       message,
       signature,
@@ -68,14 +77,23 @@ export class LandingPageComponent {
     )
 
     var response_data = response.data
-      
+    this.storageService.saveToLocalStorage('userId', response.data.data.id);
+
     if (response_data.code === 404) {
+      this.storageService.saveToLocalStorage('wallet_address', userData.address);
       console.log('response', response.data);
       // Need to pass the wallet id (provider.account)
       this.router.navigate(['/registration']);
     } else {
       this.router.navigate(['/']);
     }
+  }
+
+  onFundRaise(){
+    this.router.navigate(['/fund-raise']);
+  }
+  onCreateFundRaise(){
+    this.router.navigate(['/create-fund-raise']);
   }
 
   toggleNavbar() {

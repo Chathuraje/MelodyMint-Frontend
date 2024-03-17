@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12">
+    <div class="tbl-container">
+      <div class="tbl-fixed">
+        <ng-container *ngFor="let chunk of fundRaisers | chunk: 4">
+          <div class="row">
+            <ng-container *ngFor="let fundraiser of chunk">
+              <div class="col-md-3 mt-3" (click)="showFundraiserDetails(fundraiser)">
+                <mat-card style=" position: relative;">
+                  <mat-card-content>
+                    <img [src]="fundraiser.image" alt="" style="width: 100%;">
+                    <button class="btn btn-light btn-sm mt-4 me-4" style="position: absolute; top: 0; right: 0;">{{ fundraiser.distribution }}% distribution</button>
+
+                    <h3 class="mt-1"><span class="text-weight">{{ fundraiser.title }}</span></h3>
+                    <p class="mt-1"><span class="text-weight">{{ fundraiser.description }}</span></p>
+                    <p class="mt-1">
+                      <em class="las la-user-alt " style="font-size: 30px;"></em>
+                      <span class="text-weight">{{ fundraiser.creater_name }}</span>
+                    </p>
+                    <div class="d-flex ms-3 me-3">
+                      <p>Eth <span class="">{{ fundraiser.target_amount }}</span></p>
+                      <p> Raised of Eth <span class="">{{ fundraiser.current_amount }}</span></p>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

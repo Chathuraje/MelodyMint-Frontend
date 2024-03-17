@@ -8,6 +8,10 @@ import { RegistrationLayoutComponent } from './registration-layout/registration-
 import { InvestorRegistrationFormComponent } from './containers/investor-registration-form/investor-registration-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { ArtistRegistrationFormComponent } from './containers/artist-registration-form/artist-registration-form.component';
+import { FundRaiseFormComponent } from './containers/artist-registration-form/fund-raise-form/fund-raise-form.component';
+import { FundRaisersComponent } from '../private/fund-raisers/fund-raisers.component';
+import { ChunkPipe } from '../@application/pipes/chunk.pipe';
+import { ViewFundRaisersComponent } from '../private/fund-raisers/view-fund-raisers/view-fund-raisers.component';
 
 const routes: Routes = [
   {
@@ -21,7 +25,17 @@ const routes: Routes = [
   },
   {
     path: Paths.ArtistRegistration, component: ArtistRegistrationFormComponent,
+  },
+  {
+    path: Paths.CreateFundRaise, component: FundRaiseFormComponent,
+  },
+  {
+    path: Paths.FundRaise, component: FundRaisersComponent,
+  },
+  {
+    path: Paths.ViewFundRaise, component: ViewFundRaisersComponent,
   }
+
 
 ]
 
@@ -31,8 +45,10 @@ const routes: Routes = [
     LandingPageComponent,
     RegistrationLayoutComponent,
     InvestorRegistrationFormComponent,
-    ArtistRegistrationFormComponent
-
+    ArtistRegistrationFormComponent,
+    FundRaiseFormComponent,
+    FundRaisersComponent,
+    ViewFundRaisersComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StorageService } from 'src/app/@application/service/storage.service';
 const axios = require('axios');
 @Component({
   selector: 'app-artist-registration-form',
@@ -22,7 +23,10 @@ export class ArtistRegistrationFormComponent {
   fileName = ''
   done = false;
 
-  constructor() {}
+  constructor(
+    private storageService: StorageService,
+
+  ) { }
 
 
   ngOnInit(): void {
@@ -30,22 +34,25 @@ export class ArtistRegistrationFormComponent {
   }
 
   private formInitializer(): void {
-    this.artistRegistrationForm  = new FormGroup({
-      firstName: new FormControl(null,[Validators.required] ),
-      lastName: new FormControl(null,[Validators.required] ),
-      email: new FormControl(null,[Validators.required] ),
-      phoneNumberPrefix: new FormControl('+94' as '+94' | '+87' ),
-      contactNumber: new FormControl(null,[Validators.required] ),
-      describeYourself: new FormControl(null,[Validators.required] ),
-      yourProfession: new FormControl(null,[Validators.required] )
+    this.artistRegistrationForm = new FormGroup({
+      firstName: new FormControl(null, [Validators.required]),
+      lastName: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      phoneNumberPrefix: new FormControl('+94' as '+94' | '+87'),
+      contactNumber: new FormControl(null, [Validators.required]),
+      country: new FormControl(null, [Validators.required]),
+      state: new FormControl(null, [Validators.required]),
+      describeYourself: new FormControl(null, [Validators.required]),
+
+      yourProfession: new FormControl(null, [Validators.required])
     });
-    this.socialLinksDetailForm  = new FormGroup({
-      discordServerLink: new FormControl(null,[Validators.required] ),
-      xAccountLink: new FormControl(null,[Validators.required] ),
-      tikTokAccountLink: new FormControl(null,[Validators.required] ),
+    this.socialLinksDetailForm = new FormGroup({
+      discordServerLink: new FormControl(null, [Validators.required]),
+      xAccountLink: new FormControl(null, [Validators.required]),
+      tikTokAccountLink: new FormControl(null, [Validators.required]),
     })
     this.profilePicForm = new FormGroup({
-      profilePic: new FormControl(this.fileName,[Validators.required] ),
+      profilePic: new FormControl(this.fileName, [Validators.required]),
     })
   }
 
@@ -108,7 +115,7 @@ export class ArtistRegistrationFormComponent {
     }
   }
 
-  onCreateAccount(){
+  onCreateAccount() {
     console.log(this.artistRegistrationForm.value);
     console.log(this.socialLinksDetailForm.value);
     console.log(this.profilePicForm.value);
@@ -116,42 +123,45 @@ export class ArtistRegistrationFormComponent {
     const artistRegistrationFormData = this.artistRegistrationForm.value;
     const socialLinksDetailFormData = this.socialLinksDetailForm.value;
     const profilePicFormData = this.profilePicForm.value;
+    const wallet_address = this.storageService.getFromLocalStorage('wallet_address');
+    console.log(wallet_address);
+    if (wallet_address) {
+      const postData = {
+        wallet_address: wallet_address,
+        username: "",
+        first_name: artistRegistrationFormData.firstName,
+        last_name: artistRegistrationFormData.lastName,
+        email: artistRegistrationFormData.email,
+        contact_no: artistRegistrationFormData.phoneNumberPrefix + artistRegistrationFormData.contactNumber,
+        country: "Sri Lanka",
+        state: "Western",
+        profile_picture: profilePicFormData.profilePic,
+        is_artist: true,
+        artist_data: {
+          profession: artistRegistrationFormData.yourProfession,
+          about: artistRegistrationFormData.describeYourself,
+          discord: socialLinksDetailFormData.discordServerLink,
+          x: socialLinksDetailFormData.xAccountLink,
+          tiktok: socialLinksDetailFormData.tikTokAccountLink
+        },
+        disabled: false
+      };
 
-    const postData = {
-      wallet_address: '0xc3d3E220EcA81BBb0593191C30b160c99bd32D96',
-      username: "",
-      first_name: artistRegistrationFormData.firstName,
-      last_name: artistRegistrationFormData.lastName,
-      email: artistRegistrationFormData.email,
-      contact_no: artistRegistrationFormData.phoneNumberPrefix + artistRegistrationFormData.contactNumber,
-      country: "Sri Lanka",
-      state: "Western",
-      profile_picture: profilePicFormData.profilePic,
-      is_artist: true,
-      artist_data: {
-        profession: artistRegistrationFormData.yourProfession,
-        about: artistRegistrationFormData.describeYourself,
-        discord: socialLinksDetailFormData.discordServerLink,
-        x: socialLinksDetailFormData.xAccountLink,
-        tiktok: socialLinksDetailFormData.tikTokAccountLink
-      },
-      disabled: false
-    };
-    
-    var respones = axios.post('http://64.225.90.69:1998/api/auth/register', postData, {
-      headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json'
+      var respones = axios.post('http://64.225.90.69:1998/api/auth/register', postData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json'
+        }
+      })
+
+      const message = respones.data;
+      if (message.code === 400) {
+        console.log("User already registered")
+      } else if (message.code === 400) {
+        console.log("User sucessfully registerd")
+      } else {
+        console.log("U")
       }
-    })
-
-    const message = respones.data;
-    if (message.code === 400) {
-      console.log("User already registered")
-    } else if (message.code === 400) {
-      console.log("User sucessfully registerd")
-    } else {
-      console.log("U")
     }
 
   }
