@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between">
+  <div>
+    <p class="mb-0 mt-3 ps-2 dialog-title">{{title}} Streaming</p>
+  </div>
+  <div class="justify-content-end">
+    <button [mat-dialog-close]="true" mat-icon-button>
+      <mat-icon class="dialog-icon">close</mat-icon>
+    </button>
+  </div>
+</div>
+<hr />
+<div class="p-2">
+  <nz-table #dataTable [nzData]="records" nzOuterBordered="true" nzShowSizeChanger nzBordered="true"
+    nzTableLayout="fixed" nzFrontPagination="false" nzShowPagination="false">
+    <thead>
+      <tr>
+        <th nzWidth="150px">Date</th>
+        <th nzWidth="100px">Time</th>
+        <th nzWidth="150px">Stream duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of records">
+        <td>{{ data.date }}</td>
+        <td>{{ data.time }}</td>
+        <td>{{ data.duration }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

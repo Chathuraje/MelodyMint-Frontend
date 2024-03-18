@@ -34,7 +34,11 @@ $MelodyMint-FrontEnd-theme: mat.define-light-theme((
 @include mat.all-component-themes($MelodyMint-FrontEnd-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
+.mat-dialog-title {
+  padding: 10px 10px 0 10px !important;
+  margin: 0 !important;
+  height: 43px !important;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import "~bootstrap/dist/css/bootstrap.css"

@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class MarketPlaceComponent {
 
-  marketPlaces = [] as MarketPlace []
+  marketPlaces = [] as MarketPlace[]
 
   constructor(
     private router: Router,
     private http: HttpClient,
-  ){
+  ) {
   }
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class MarketPlaceComponent {
   }
 
 
-  showMarketPlaceDetails(marketPlace:MarketPlace){
+  showMarketPlaceDetails(marketPlace: MarketPlace) {
     console.log(marketPlace);
 
     this.router.navigate(['/single-market-place'], { queryParams: { marketPlace: JSON.stringify(marketPlace) } });
@@ -58,6 +58,9 @@ export interface MarketPlace {
   name: string
   description: string
   owner_id: string
-  date: string
+  campaign_id: string
   id: string
+  owner_name: string
+  floor: string
+  volume: string
 }

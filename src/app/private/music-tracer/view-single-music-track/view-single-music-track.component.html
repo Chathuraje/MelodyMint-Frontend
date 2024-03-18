@@ -1,0 +1,65 @@
+<div
+  [style.backgroundImage]="'url(https://www.unite.ai/wp-content/uploads/2023/10/Alex_Mc_music_symbols_and_neural_networks._f759d884-da80-47b1-83f1-b4f21fd2bc97.jpg)'"
+  class="cover-image p-5">
+  <div class="d-flex text-white">
+    <img [src]="" alt="Collection_Image" height="250px" width="250px">
+    <div>
+      <h1>{{musicTracer.title}}</h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="d-flex">
+    <mat-card class="m-3 flex-grow-1">
+      <mat-card-content>
+        <p>Total streaming platforms</p>
+        <h2 class="mt-3">{{ musicTracer.total_platform }}</h2>
+        <p class="text-primary mt-3"><i class="las la-chart-area me-1"></i>10% more than usual</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="m-3 flex-grow-1">
+      <mat-card-content>
+        <p>Total streaming time</p>
+        <h2 class="mt-1">{{ musicTracer.total_stream }}</h2>
+        <p class="text-primary mt-3"><i class="las la-chart-area me-1"></i>10% more than usual</p>
+
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="m-3 flex-grow-1">
+      <mat-card-content>
+        <p>Total streams</p>
+        <h2 class="mt-1">{{ musicTracer.total_time }}</h2>
+        <p class="text-primary mt-3"><i class="las la-chart-area me-1"></i>10% more than usual</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="mt-4 p-4" style="border-radius: 16px;
+  border: 1px solid var(--Neutral-Gray---100, #E7E7E7);
+  background: #FFF;">
+    <div class="mb-4">
+      <h3>Music track overview</h3>
+      <p>last updated 1 min ago</p>
+    </div>
+    <nz-table #monthlyTable [nzData]="musicTracer.platform_details" nzOuterBordered="true" nzShowSizeChanger
+      nzBordered="true" nzTableLayout="fixed" nzFrontPagination="false" nzShowPagination="false">
+      <thead>
+        <tr>
+          <th nzWidth="150px">Streamer platform</th>
+          <th nzWidth="100px">Stream count</th>
+          <th nzWidth="150px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of musicTracer.platform_details">
+          <td>{{ data.platform_name }}</td>
+          <td>{{ data.stream_count }}</td>
+          <td><em class="text-primary" (click)="onRecords(data.records,data.platform_name)">View details</em></td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+  </div>
+</div>

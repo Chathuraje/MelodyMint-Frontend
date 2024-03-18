@@ -11,6 +11,8 @@ import { ViewSingleMusicTrackComponent } from './music-tracer/view-single-music-
 import { AddMusicTracerDialogBoxComponent } from './music-tracer/add-music-tracer-dialog-box/add-music-tracer-dialog-box.component';
 import { MarketPlaceComponent } from './market-place/market-place.component';
 import { SingleMarketPlaceComponent } from './market-place/single-market-place/single-market-place.component';
+import { SingleMusicItemComponent } from './market-place/single-market-place/single-music-item/single-music-item.component';
+import { ViewRecordsDialogBoxComponent } from './music-tracer/view-single-music-track/view-records-dialog-box/view-records-dialog-box.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,9 @@ const routes: Routes = [
   },
   {
     path: Paths.SingleMarketPlace, component: SingleMarketPlaceComponent,
+  },
+  {
+    path: Paths.SingleMusicItem, component: SingleMusicItemComponent,
   }
 ]
 
@@ -41,7 +46,9 @@ const routes: Routes = [
     ViewSingleMusicTrackComponent,
     AddMusicTracerDialogBoxComponent,
     MarketPlaceComponent,
-    SingleMarketPlaceComponent
+    SingleMarketPlaceComponent,
+    SingleMusicItemComponent,
+    ViewRecordsDialogBoxComponent
   ],
   imports: [
     CommonModule,

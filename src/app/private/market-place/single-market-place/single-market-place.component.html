@@ -1,1 +1,80 @@
-<p>single-market-place works!</p>
+<div
+  [style.backgroundImage]="'url(https://www.unite.ai/wp-content/uploads/2023/10/Alex_Mc_music_symbols_and_neural_networks._f759d884-da80-47b1-83f1-b4f21fd2bc97.jpg)'"
+  class="cover-image p-5">
+  <div class="row">
+    <img [src]="" alt="Collection_Image" height="250px" width="250px">
+  </div>
+  <div class="d-flex justify-content-between text-white">
+    <div>
+      <div>
+        <h5>{{ marketPlaces.name }}</h5>
+        <p>{{ marketPlaces.owner_name }}</p>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="me-3">
+        <h5>{{ marketPlaces.volume }}</h5>
+        <p>Total volume</p>
+      </div>
+      <div class="me-3">
+        <h5>{{ marketPlaces.floor }}</h5>
+        <p>Floor price</p>
+      </div>
+      <div class="me-3">
+        <h5>-</h5>
+        <p>Best offer</p>
+      </div>
+      <div class="me-3">
+        <h5>-</h5>
+        <p>Listed</p>
+      </div>
+      <div class="me-3">
+        <h5>-</h5>
+        <p>Owners (Unique)</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="p-5 pt-2 pb-2">
+  <div>{{ marketPlaces.description }}</div>
+  <div class="pt-2">
+    <b>Items:</b> {{musicCollection.length}}
+    <b>Created:</b> -
+    <b>Distribution:</b> -
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="d-flex justify-content-between mt-4">
+    <div class="h3"> Music Colootion</div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="tbl-container">
+        <div class="tbl-fixed">
+          <ng-container *ngFor="let chunk of musicCollection | chunk: 4">
+            <div class="row">
+              <ng-container *ngFor="let musicCollection of chunk">
+                <div class="col-md-3 mt-3" (click)="showMusicDetails(musicCollection)">
+                  <mat-card>
+                    <mat-card-content>
+                      <img [src]="musicCollection.image" alt="Tet Image" style="width: 100%;" height="300px">
+                      <div class="mt-1 h5">{{ musicCollection.token_name }}</div>
+                      <div class="mt-1 h5">{{ musicCollection.creation_date }}</div>
+                      <div class="mt-1 h-4">Current price <span class="text-weight">{{ musicCollection.price }}</span>
+                        eth</div>
+                      <div class="mt-1 h-4">Last sale <span class="text-weight">{{ musicCollection.royalties }}</span>
+                        eth</div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

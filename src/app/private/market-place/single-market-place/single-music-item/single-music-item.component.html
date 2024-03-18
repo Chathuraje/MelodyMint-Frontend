@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-5">
+      <img [src]="musicCollection.image" alt="Token_View" width="100%" height="50%">
+    </div>
+    <div class="col-7">
+      <div>
+        <h5 class="mb-1">{{musicCollection.owner_id}}</h5>
+        <h3 class="mb-3">{{musicCollection.token_name}}</h3>
+        <h6 class="mb-4">{{musicCollection.current_owner_id}}</h6>
+        <h6 class="mb-3">Creation Date : {{musicCollection.creation_date}}</h6>
+        <h6 class="mb-1">Current price</h6>
+        <h4 class="mb-4"><b>{{musicCollection.price}} Eth</b> </h4>
+        <button class="btn btn-primary w-50">Buy now</button>
+      </div>
+      <div class="p-3 mt-3" style="border-radius: 8px;
+      border: 1px solid var(--Neutral-Gray---100, #E7E7E7);">
+        <h3 class="mb-3">Description</h3>
+        <p class="mb-3">{{musicCollection.token_description}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -10,6 +10,7 @@ export enum Paths {
   ViewSingleMusicTrack = 'view-single-music-track',
   MarketPlace = 'market-place',
   SingleMarketPlace = 'single-market-place',
+  SingleMusicItem = 'single-music-item',
 
 
 }
