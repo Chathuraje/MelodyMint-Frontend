@@ -1,0 +1,83 @@
+<div style="height: 100% ;width:100%">
+  <div class="row align-items-center" style="height: 100%">
+    <div class="col-4 p-5 d-flex flex-column justify-content-center" style="
+        background: var(
+          --Gradient-Dark-blue-linear-gradient-2,
+          linear-gradient(
+            180deg,
+            rgba(29, 78, 216, 0.27) 0%,
+            rgba(29, 78, 216, 0.06) 41.5%,
+            rgba(29, 78, 216, 0.02) 100%
+          ),
+          #000
+        );
+        height: 100%;
+      ">
+      <div class="text-light" style="font-size: 48px">
+        Tell us about your <br />
+        music
+      </div>
+      <div class="fs-6 mt-3 text-light">
+        The process stars with selecting the media that you are want to upload
+      </div>
+    </div>
+    <div class="col-8 p-5 d-flex flex-column justify-content-center"
+      style="background: var(--Shades-White, #fff); height: 100%; position: relative;">
+      <div style="position: absolute;  top: 0; right: 0;" class="m-5">
+        <button mat-icon-button mat-dialog-close>
+          <mat-icon aria-label="Close dialog">close</mat-icon>
+        </button>
+      </div>
+
+      <div>
+
+        <form [formGroup]="addMusicTrackForm" >
+          <div mat-dialog-content>
+            <nz-form-item class="w-100">
+              <div class="w-100">
+                <nz-form-label nzRequired>Music track name</nz-form-label>
+                <nz-form-control nzErrorTip="Music Track is required!">
+                  <input nz-input class="w-100" formControlName="musicTrackName"
+                    placeHolder="Type the name of the music track">
+                </nz-form-control>
+              </div>
+            </nz-form-item>
+            <nz-form-item class="w-100">
+              <div class="w-100">
+                <nz-form-label nzRequired>Upload your music</nz-form-label>
+                <nz-form-control nzErrorTip="Upload your music is required!">
+                  <div class="d-flex flex-row">
+                    <input #upload type="file" hidden="false" accept=" video/*, audio/*" (change)="onUpload($event)">
+                    <button class="btn-radius" nzType="primary" nzGhost nz-button (click)="upload.click()">
+                      <em nz-icon nzType="upload"></em>
+                      Choose File
+                    </button>
+                  </div>
+                  <p class="mt-2">{{fileName}}</p>
+                </nz-form-control>
+              </div>
+            </nz-form-item>
+
+          </div>
+          <div class="d-flex justify-content-end mt-3 mb-4 me-4">
+            <button
+              class="small-btn-width btn-radius me-2"
+              [mat-dialog-close]="true"
+              nzType="primary"
+              nzGhost
+              nz-button
+            >
+              Cancel
+            </button>
+            <button class="btn-radius small-btn-width" nzType="primary" nz-button (click)="onSubmit()">
+              Upload Music
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>

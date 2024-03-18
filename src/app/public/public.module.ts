@@ -9,9 +9,7 @@ import { InvestorRegistrationFormComponent } from './containers/investor-registr
 import { SharedModule } from '../shared/shared.module';
 import { ArtistRegistrationFormComponent } from './containers/artist-registration-form/artist-registration-form.component';
 import { FundRaiseFormComponent } from './containers/artist-registration-form/fund-raise-form/fund-raise-form.component';
-import { FundRaisersComponent } from '../private/fund-raisers/fund-raisers.component';
-import { ChunkPipe } from '../@application/pipes/chunk.pipe';
-import { ViewFundRaisersComponent } from '../private/fund-raisers/view-fund-raisers/view-fund-raisers.component';
+import { MarketPlaceComponent } from '../private/market-place/market-place.component';
 
 const routes: Routes = [
   {
@@ -29,16 +27,8 @@ const routes: Routes = [
   {
     path: Paths.CreateFundRaise, component: FundRaiseFormComponent,
   },
-  {
-    path: Paths.FundRaise, component: FundRaisersComponent,
-  },
-  {
-    path: Paths.ViewFundRaise, component: ViewFundRaisersComponent,
-  }
-
 
 ]
-
 
 @NgModule({
   declarations: [
@@ -47,8 +37,6 @@ const routes: Routes = [
     InvestorRegistrationFormComponent,
     ArtistRegistrationFormComponent,
     FundRaiseFormComponent,
-    FundRaisersComponent,
-    ViewFundRaisersComponent
   ],
   imports: [
     CommonModule,

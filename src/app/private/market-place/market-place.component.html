@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="d-flex justify-content-between mt-4">
+    <div class="h1">Melody Mint marketplace</div>
+
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="tbl-container">
+        <div class="tbl-fixed">
+          <ng-container *ngFor="let chunk of marketPlaces | chunk: 4">
+            <div class="row">
+              <ng-container *ngFor="let marketPlace of chunk">
+                <div class="col-md-3 mt-3" (click)="showMarketPlaceDetails(marketPlace)">
+                  <mat-card>
+                    <mat-card-content>
+                      <img [src]="" alt="Tet Image" style="width: 100%;">
+                      <div class="mt-1 h-4"><span class="text-weight">{{ marketPlace.name }}</span></div>
+
+                      <div>
+                        <div class=" d-flex align-items-center">
+                          <div class="icon-container">
+                            <i class="las la-user-alt" style="font-size: 30px;"></i>
+                          </div>
+                          <div class="ms-2">
+                            <span>{{ marketPlace.owner_id }}</span>
+                          </div>
+                        </div>
+
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -14,6 +14,8 @@ import {
   InjectedConnector,
 } from '@wagmi/core';
 import { StorageService } from 'src/app/@application/service/storage.service';
+import { Apis } from 'src/app/@application/enums/api';
+import { Paths } from 'src/app/@application/enums/paths';
 
 const client = createClient({
   autoConnect: true,
@@ -83,17 +85,24 @@ export class LandingPageComponent {
       this.storageService.saveToLocalStorage('wallet_address', userData.address);
       console.log('response', response.data);
       // Need to pass the wallet id (provider.account)
-      this.router.navigate(['/registration']);
+      this.router.navigate([Paths.Registration]);
     } else {
       this.router.navigate(['/']);
     }
   }
 
   onFundRaise(){
-    this.router.navigate(['/fund-raise']);
+    this.router.navigate([Paths.FundRaise]);
   }
   onCreateFundRaise(){
-    this.router.navigate(['/create-fund-raise']);
+    this.router.navigate([Paths.CreateFundRaise]);
+  }
+  onMusicTracer(){
+    this.router.navigate([Paths.ViewMusicTracer]);
+
+  }
+  onMarketplace(){
+    this.router.navigate([Paths.MarketPlace]);
   }
 
   toggleNavbar() {

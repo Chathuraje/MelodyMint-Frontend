@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="d-flex justify-content-between mt-4">
+    <div class="h1">Music Aalyst</div>
+    <div>
+      <button type="button" class="btn" style="border-radius: 8px;
+      background: rgba(29, 78, 216, 0.20);" (click)="onAddMusicTrack()">Add music to the tracker</button>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="tbl-container">
+        <div class="tbl-fixed">
+          <ng-container *ngFor="let chunk of musicTracer | chunk: 4">
+            <div class="row">
+              <ng-container *ngFor="let musicTracer of chunk">
+                <div class="col-md-3 mt-3" (click)="showMusicTracerDetails(musicTracer)">
+                  <mat-card >
+                    <mat-card-content>
+                      <img [src]="musicTracer.image" alt="" style="width: 100%;">
+                      <h3 class="mt-1"><span class="text-weight">{{ musicTracer.title }}</span></h3>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
