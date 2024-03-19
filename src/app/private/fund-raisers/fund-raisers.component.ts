@@ -30,7 +30,7 @@ showFundraiserDetails(fundraiser: FundRaisers) {
 
 
 getFundRaisersData(): void {
-  this.http.get<any>('http://64.225.90.69:1998/api/campaigns/').subscribe({
+  this.http.get<any>('https://api.melodymint.digitix365.com/api/campaigns/').subscribe({
     next: (value: any) => {
       this.fundRaisers = value.data
       console.log(this.fundRaisers);

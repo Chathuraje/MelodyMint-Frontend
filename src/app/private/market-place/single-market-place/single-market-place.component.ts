@@ -40,7 +40,7 @@ export class SingleMarketPlaceComponent {
   getMusicCollectionData(marketPlacesId: string) {
     console.log(marketPlacesId);
 
-    this.http.get<Root>('http://64.225.90.69:1998/api/marketplace/' + marketPlacesId + '/nfts').subscribe({
+    this.http.get<Root>('https://api.melodymint.digitix365.com/api/marketplace/' + marketPlacesId + '/nfts').subscribe({
       next: (value: Root) => {
         this.musicCollection = value.data;
         console.log(this.musicCollection);
