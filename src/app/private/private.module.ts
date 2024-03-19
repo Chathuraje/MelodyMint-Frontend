@@ -13,29 +13,39 @@ import { MarketPlaceComponent } from './market-place/market-place.component';
 import { SingleMarketPlaceComponent } from './market-place/single-market-place/single-market-place.component';
 import { SingleMusicItemComponent } from './market-place/single-market-place/single-music-item/single-music-item.component';
 import { ViewRecordsDialogBoxComponent } from './music-tracer/view-single-music-track/view-records-dialog-box/view-records-dialog-box.component';
+import { HomeComponent } from './home/home.component';
+import { HomeNavbarComponent } from './home/home-navbar/home-navbar.component';
+import { HomeFooterComponent } from './home/home-footer/home-footer.component';
+
 
 const routes: Routes = [
   {
-    path: Paths.FundRaise, component: FundRaisersComponent,
+    path: '', component: HomeComponent,
+    children:[
+      {
+        path: Paths.FundRaise, component: FundRaisersComponent,
+      },
+      {
+        path: Paths.ViewFundRaise, component: ViewFundRaisersComponent,
+      },
+      {
+        path: Paths.ViewMusicTracer, component: MusicTracerComponent,
+      },
+      {
+        path: Paths.ViewSingleMusicTrack, component: ViewSingleMusicTrackComponent,
+      },
+      {
+        path: Paths.MarketPlace, component: MarketPlaceComponent,
+      },
+      {
+        path: Paths.SingleMarketPlace, component: SingleMarketPlaceComponent,
+      },
+      {
+        path: Paths.SingleMusicItem, component: SingleMusicItemComponent,
+      }
+    ]
   },
-  {
-    path: Paths.ViewFundRaise, component: ViewFundRaisersComponent,
-  },
-  {
-    path: Paths.ViewMusicTracer, component: MusicTracerComponent,
-  },
-  {
-    path: Paths.ViewSingleMusicTrack, component: ViewSingleMusicTrackComponent,
-  },
-  {
-    path: Paths.MarketPlace, component: MarketPlaceComponent,
-  },
-  {
-    path: Paths.SingleMarketPlace, component: SingleMarketPlaceComponent,
-  },
-  {
-    path: Paths.SingleMusicItem, component: SingleMusicItemComponent,
-  }
+
 ]
 
 @NgModule({
@@ -48,14 +58,20 @@ const routes: Routes = [
     MarketPlaceComponent,
     SingleMarketPlaceComponent,
     SingleMusicItemComponent,
-    ViewRecordsDialogBoxComponent
+    ViewRecordsDialogBoxComponent,
+    HomeComponent,
+    HomeNavbarComponent,
+    HomeFooterComponent
+
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+
   ]
 })
 export class PrivateModule { }
