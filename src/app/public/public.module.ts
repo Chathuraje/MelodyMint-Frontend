@@ -9,7 +9,9 @@ import { InvestorRegistrationFormComponent } from './containers/investor-registr
 import { SharedModule } from '../shared/shared.module';
 import { ArtistRegistrationFormComponent } from './containers/artist-registration-form/artist-registration-form.component';
 import { FundRaiseFormComponent } from './containers/artist-registration-form/fund-raise-form/fund-raise-form.component';
-import { MarketPlaceComponent } from '../private/market-place/market-place.component';
+import { NavbarComponent } from './landing-page/navbar/navbar.component';
+import { FooterComponent } from './landing-page/footer/footer.component';
+import { DetailsComponent } from './landing-page/details/details.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,9 @@ const routes: Routes = [
     InvestorRegistrationFormComponent,
     ArtistRegistrationFormComponent,
     FundRaiseFormComponent,
+    NavbarComponent,
+    FooterComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
@@ -44,6 +49,7 @@ const routes: Routes = [
     FormsModule,
     SharedModule,
     ReactiveFormsModule
-  ]
+  ],
+
 })
 export class PublicModule { }
