@@ -52,7 +52,7 @@ export class ArtistRegistrationFormComponent {
       tikTokAccountLink: new FormControl(null, [Validators.required]),
     })
     this.profilePicForm = new FormGroup({
-      profilePic: new FormControl(this.fileName, [Validators.required]),
+      profilePic: new FormControl(null, [Validators.required]),
     })
   }
 
@@ -146,6 +146,7 @@ export class ArtistRegistrationFormComponent {
         },
         disabled: false
       };
+      console.log(postData);
 
       var respones = axios.post('http://64.225.90.69:1998/api/auth/register', postData, {
         headers: {
@@ -167,10 +168,11 @@ export class ArtistRegistrationFormComponent {
   }
 
   onUpload(event: any) {
-    const formData = new FormData();
     const file = event.target.files[0] as File;
-    formData.append('file', file, file.name);
+    this.profilePicForm.get('profilePic')?.setValue(file);
     this.fileName = file.name
   }
+
+
 
 }

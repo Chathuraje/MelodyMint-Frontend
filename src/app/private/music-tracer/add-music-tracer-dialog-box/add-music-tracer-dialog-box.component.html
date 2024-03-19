@@ -37,7 +37,7 @@
               <div class="w-100">
                 <nz-form-label nzRequired>Music track name</nz-form-label>
                 <nz-form-control nzErrorTip="Music Track is required!">
-                  <input nz-input class="w-100" formControlName="musicTrackName"
+                  <input nz-input class="w-100" formControlName="song_name"
                     placeHolder="Type the name of the music track">
                 </nz-form-control>
               </div>
@@ -47,8 +47,8 @@
                 <nz-form-label nzRequired>Upload your music</nz-form-label>
                 <nz-form-control nzErrorTip="Upload your music is required!">
                   <div class="d-flex flex-row">
-                    <input #upload type="file" hidden="false" accept=" video/*, audio/*" (change)="onUpload($event)">
-                    <button class="btn-radius" nzType="primary" nzGhost nz-button (click)="upload.click()">
+                    <input #upload type="file" hidden="false" accept=" video/*, audio/*" (change)="onUpload($event)" name="file">
+                    <button class="btn-radius" nzType="primary" nzGhost nz-button (click)="upload.click()" >
                       <em nz-icon nzType="upload"></em>
                       Choose File
                     </button>

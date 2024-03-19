@@ -136,9 +136,9 @@ export class InvestorRegistrationFormComponent implements OnInit {
   }
 
   onUpload(event: any) {
-    const formData = new FormData();
     const file = event.target.files[0] as File;
-    formData.append('file', file, file.name);
+    console.log(file);
+    this.profilePicForm.get('profile_picture')?.setValue(file)
     this.fileName = file.name
   }
 

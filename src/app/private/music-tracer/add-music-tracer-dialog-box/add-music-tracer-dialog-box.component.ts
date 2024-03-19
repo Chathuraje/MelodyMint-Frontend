@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -13,7 +14,8 @@ export class AddMusicTracerDialogBoxComponent {
   fileName = ''
   done = false;
 
- constructor(
+  constructor(
+    private http: HttpClient,
     private dialogRef: MatDialogRef<AddMusicTracerDialogBoxComponent>,
   ) {
   }
@@ -23,20 +25,31 @@ export class AddMusicTracerDialogBoxComponent {
 
   private formInitializer(): void {
     this.addMusicTrackForm = new FormGroup({
-      musicTrackName : new FormControl(null,[Validators.required]),
-      musicFileName: new FormControl(this.fileName)
+      song_name: new FormControl(null, [Validators.required]),
+      file: new FormControl(null, [Validators.required]),
+      user_id: new FormControl('65f6df19b47d10863bcfc79e', [Validators.required])
     })
   }
   onUpload(event: any) {
-    const formData = new FormData();
-    const file = event.target.files[0] as File;
-    formData.append('file', file, file.name);
+    const file = event.target.files[0];
+    console.log(file);
+    this.addMusicTrackForm.get('file')?.setValue(file)
     this.fileName = file.name
   }
 
 
-  onSubmit(){
-    console.log( this.addMusicTrackForm.value);
+  onSubmit() {
+    if (this.addMusicTrackForm.valid) {
+      console.log(this.addMusicTrackForm.value);
+      this.http.post<any>('http://64.225.90.69:1998/api/audio/train', this.addMusicTrackForm.value).subscribe({
+        next: (response: any) => {
+          console.log('Response:', response);
+        },
+        error: (error: any) => {
+          console.error('Error posting data:', error);
+        }
+      });
+    }
   }
 
 
