@@ -44,7 +44,7 @@ export class MusicTracerComponent {
 
 
   getMusicTracerData(): void {
-    this.http.get<any>('https://api.melodymint.digitix365.com/audio/65f6df19b47d10863bcfc79e').subscribe({
+    this.http.get<any>('http://127.0.0.1:1998/audio/65f6df19b47d10863bcfc79e').subscribe({
       next: (value: any) => {
         this.musicTracer = value.data
         console.log(this.musicTracer);

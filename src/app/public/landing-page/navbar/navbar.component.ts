@@ -60,7 +60,7 @@ export class NavbarComponent {
     };
 
     const { data } = await axios.post(
-      `https://api.melodymint.digitix365.com/api/auth/request_challenge`, userData
+      `http://127.0.0.1:1998/api/auth/request_challenge`, userData
     );
 
     const message = data.message;
@@ -73,7 +73,7 @@ export class NavbarComponent {
       network: 'evm',
     }
     const response  = await axios.post(
-      `https://api.melodymint.digitix365.com/api/auth/verify_challenge`, challengeData
+      `http://127.0.0.1:1998/api/auth/verify_challenge`, challengeData
     )
 
     var response_data = response.data

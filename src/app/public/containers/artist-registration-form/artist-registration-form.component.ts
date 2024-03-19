@@ -147,7 +147,7 @@ export class ArtistRegistrationFormComponent {
         disabled: false
       };
 
-      var respones = axios.post('https://api.melodymint.digitix365.com/api/auth/register', postData, {
+      var respones = axios.post('http://127.0.0.1:1998/api/auth/register', postData, {
         headers: {
           'Content-Type': 'application/json',
           'accept': 'application/json'
