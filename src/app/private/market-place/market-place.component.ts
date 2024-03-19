@@ -33,7 +33,7 @@ export class MarketPlaceComponent {
 
 
   getMarketPlaceData(): void {
-    this.http.get<any>('http://64.225.90.69:1998/api/marketplace/').subscribe({
+    this.http.get<any>('https://api.melodymint.digitix365.com/api/marketplace/').subscribe({
       next: (value: any) => {
         this.marketPlaces = value.data
         console.log(this.marketPlaces);
