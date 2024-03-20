@@ -34,10 +34,12 @@ export class NavbarComponent {
     private storageService: StorageService,
     ) {
 
-      const userId = this.storageService.getFromLocalStorage('userId');
+      var userId = this.storageService.getFromLocalStorage('userId');
       console.log(userId);
       if(userId) {
         this.disbutton = true
+      } else {
+        this.disbutton = false
       }
 
    }
@@ -77,14 +79,13 @@ export class NavbarComponent {
     )
 
     var response_data = response.data
-    this.storageService.saveToLocalStorage('userId', response.data.data.id);
-
+    console.log(response_data)
     if (response_data.code === 404) {
       this.storageService.saveToLocalStorage('wallet_address', userData.address);
       console.log('response', response.data);
-      // Need to pass the wallet id (provider.account)
       this.router.navigate([Paths.Registration]);
     } else {
+      this.storageService.saveToLocalStorage('userId', response.data.data.username);
       this.router.navigate(['/']);
     }
   }

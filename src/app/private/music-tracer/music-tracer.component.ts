@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AddMusicTracerDialogBoxComponent } from './add-music-tracer-dialog-box/add-music-tracer-dialog-box.component';
+import { StorageService } from 'src/app/@application/service/storage.service';
 
 @Component({
   selector: 'app-music-tracer',
@@ -16,6 +17,7 @@ export class MusicTracerComponent {
   constructor(
     private router: Router,
     private http: HttpClient,
+    private storageService: StorageService,
     private dialog: MatDialog,
   ) {
   }
@@ -44,7 +46,10 @@ export class MusicTracerComponent {
 
 
   getMusicTracerData(): void {
-    this.http.get<any>('http://127.0.0.1:1998/audio/65f6df19b47d10863bcfc79e').subscribe({
+    var userId = this.storageService.getFromLocalStorage('userId');
+
+
+    this.http.get<any>(`http://127.0.0.1:1998/api/audio/${userId}`).subscribe({
       next: (value: any) => {
         this.musicTracer = value.data
         console.log(this.musicTracer);

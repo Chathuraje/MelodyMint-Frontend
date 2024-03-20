@@ -101,14 +101,16 @@
         background: rgba(29, 78, 216, 0.20);">View collection</button>
       </div>
       <hr>
+      <form [formGroup]="investForm">
       <div class="mt-5">
         <nz-form-label >Enter your investment to support the artist</nz-form-label>
         <nz-form-control nzErrorTip="Title of the fundraiser is required!">
-          <input nz-input class="w-100"
-            placeholder="Enter Amount" />
+          <input nz-input class="w-100" placeholder="Enter Amount" formControlName="amount"/>
         </nz-form-control>
-        <button class="btn btn-primary w-100 mt-3 ">Invest</button>
+
+        <button class="btn btn-primary w-100 mt-3 " nz-button (click)="invest()">Invest</button>
       </div>
+    </form>
      
 
 

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/@application/service/storage.service';
 const axios = require('axios');
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-artist-registration-form',
   templateUrl: './artist-registration-form.component.html',
@@ -25,6 +27,7 @@ export class ArtistRegistrationFormComponent {
 
   constructor(
     private storageService: StorageService,
+    private router: Router,
 
   ) { }
 
@@ -115,7 +118,7 @@ export class ArtistRegistrationFormComponent {
     }
   }
 
-  onCreateAccount() {
+  async onCreateAccount() {
     console.log(this.artistRegistrationForm.value);
     console.log(this.socialLinksDetailForm.value);
     console.log(this.profilePicForm.value);
@@ -147,18 +150,21 @@ export class ArtistRegistrationFormComponent {
         disabled: false
       };
 
-      var respones = axios.post('http://127.0.0.1:1998/api/auth/register', postData, {
+      var respones = await axios.post('http://127.0.0.1:1998/api/auth/register', postData, {
         headers: {
           'Content-Type': 'application/json',
           'accept': 'application/json'
         }
       })
-
       const message = respones.data;
       if (message.code === 400) {
+        alert("User already registered")
         console.log("User already registered")
-      } else if (message.code === 400) {
+        this.router.navigate(['/']);
+      } else if (message.code === 200) {
+        alert("User sucessfully registerd")
         console.log("User sucessfully registerd")
+        this.router.navigate(['/']);
       } else {
         console.log("U")
       }
